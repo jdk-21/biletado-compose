@@ -26,8 +26,21 @@ services:
       KEYCLOAK_PASSWORD: ${KEYCLOAK_PASSWORD}
       KEYCLOAK_IMPORT: /tmp/realm-export.json
     image: jboss/keycloak
-    ports:
-      - "8080:8080"
+    expose:
+      - "8080"
     restart: unless-stopped
     volumes:
       - ./keycloak/realm-export.json:/tmp/realm-export.json:Z
+
+  traefik:
+    depends_on:
+      - keycloak
+    container_name: biletado-traefik
+    image: traefik
+    ports:
+      - "8080:8080"
+      - "80:80"
+    restart: unless-stopped
+    volumes:
+      - ./traefik/traefik.yaml:/etc/traefik/traefik.yaml:Z
+      - ./traefik/traefik.conf.d/:/etc/traefik/traefik.conf.d/:Z

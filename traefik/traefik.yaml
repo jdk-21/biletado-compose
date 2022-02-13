@@ -1,0 +1,14 @@
+entryPoints:
+  web:
+    address: :80
+
+log:
+  level: DEBUG
+api:
+  insecure: true
+
+accessLog: {}
+providers:
+  file:
+    directory: /etc/traefik/traefik.conf.d/
+    watch: true
