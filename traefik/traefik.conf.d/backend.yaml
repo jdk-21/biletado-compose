@@ -6,12 +6,27 @@ http:
       rule: PathPrefix(`/api`)
       middlewares:
         - api-strip-prefix
+        - api-headers
       service: backend
   middlewares:
     api-strip-prefix:
       stripPrefix:
         prefixes:
           - '/api'
+    api-headers:
+      headers:
+        accessControlAllowMethods:
+          - GET
+          - OPTIONS
+          - PUT
+        accessControlAllowCredentials: true
+        accessControlAllowOriginList:
+          - http://localhost
+          - http://localhost:4200
+        accessControlAllowHeaders:
+          - "Authorization"
+        accessControlMaxAge: 100
+        addVaryHeader: true
   services:
     backend:
       loadBalancer:
