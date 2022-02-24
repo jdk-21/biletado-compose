@@ -42,6 +42,9 @@ services:
   backend:
     container_name: biletado-backend
     image: registry.gitlab.com/biletado/backend/go
+    environment:
+      KEYCLOAK_HOST: "keycloak:8080"
+      KEYCLOAK_REALM: "biletado"
     expose:
       - "9000"
     restart: unless-stopped
