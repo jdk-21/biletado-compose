@@ -32,9 +32,17 @@ services:
     volumes:
       - ./keycloak/realm-export.json:/tmp/realm-export.json:Z
 
+  frontend:
+    container_name: biletado-frontend
+    image: registry.gitlab.com/biletado/frontend/angular
+    expose:
+      - "80"
+    restart: unless-stopped
+
   traefik:
     depends_on:
       - keycloak
+      - frontend
     container_name: biletado-traefik
     image: traefik
     ports:
