@@ -1,0 +1,19 @@
+http:
+  routers:
+    backend:
+      entryPoints:
+        - web
+      rule: PathPrefix(`/api`)
+      middlewares:
+        - api-strip-prefix
+      service: backend
+  middlewares:
+    api-strip-prefix:
+      stripPrefix:
+        prefixes:
+          - '/api'
+  services:
+    backend:
+      loadBalancer:
+        servers:
+          - url: http://backend:9000

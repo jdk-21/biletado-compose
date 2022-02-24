@@ -39,10 +39,18 @@ services:
       - "80"
     restart: unless-stopped
 
+  backend:
+    container_name: biletado-backend
+    image: registry.gitlab.com/biletado/backend/go
+    expose:
+      - "9000"
+    restart: unless-stopped
+
   traefik:
     depends_on:
       - keycloak
       - frontend
+      - backend
     container_name: biletado-traefik
     image: traefik
     ports:
