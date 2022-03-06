@@ -12,3 +12,8 @@ providers:
   file:
     directory: /etc/traefik/traefik.conf.d/
     watch: true
+
+tracing:
+  jaeger:
+    samplingServerURL: http://jaeger:5778/sampling
+    localAgentHostPort: jaeger:6831

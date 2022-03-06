@@ -54,6 +54,7 @@ services:
       - keycloak
       - frontend
       - backend
+      - jaeger
     container_name: biletado-traefik
     image: traefik
     ports:
@@ -63,3 +64,12 @@ services:
     volumes:
       - ./traefik/traefik.yaml:/etc/traefik/traefik.yaml:Z
       - ./traefik/traefik.conf.d/:/etc/traefik/traefik.conf.d/:Z
+  jaeger:
+    container_name: biletado-jaeger
+    image: jaegertracing/all-in-one:latest
+    environment:
+      QUERY_BASE_PATH: "/jaeger"
+    expose:
+      - "5778"
+      - "6831/udp"
+      - "16686"
