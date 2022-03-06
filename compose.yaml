@@ -43,7 +43,7 @@ services:
     container_name: biletado-backend
     image: registry.gitlab.com/biletado/backend/go
     environment:
-      KEYCLOAK_HOST: "keycloak:8080"
+      KEYCLOAK_HOST: "traefik/auth"
       KEYCLOAK_REALM: "biletado"
     expose:
       - "9000"
