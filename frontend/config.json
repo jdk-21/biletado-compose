@@ -1,0 +1,13 @@
+{
+  "apiUrl": "/api",
+  "keycloak": {
+    "url": "http://localhost/auth",
+    "realm": "biletado",
+    "clientId": "angular"
+  },
+  "dashboardUrls": {
+    "traefik": "//localhost:8080/",
+    "keycloak": "/auth",
+    "jaeger-ui": "/jaeger/search?service=traefik"
+  }
+}

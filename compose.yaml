@@ -38,6 +38,8 @@ services:
     expose:
       - "80"
     restart: unless-stopped
+    volumes:
+      - ./frontend/config.json:/usr/share/nginx/html/assets/config.json:Z
 
   backend:
     container_name: biletado-backend
