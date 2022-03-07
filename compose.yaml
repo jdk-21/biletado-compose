@@ -34,7 +34,7 @@ services:
 
   frontend:
     container_name: biletado-frontend
-    image: registry.gitlab.com/biletado/frontend/angular
+    image: ${FRONTEND_IMAGE_REPOSITORY}:${FRONTEND_IMAGE_VERSION}
     expose:
       - "80"
     restart: unless-stopped
@@ -43,7 +43,7 @@ services:
 
   backend:
     container_name: biletado-backend
-    image: registry.gitlab.com/biletado/backend/go
+    image: ${BACKEND_IMAGE_REPOSITORY}:${BACKEND_IMAGE_VERSION}
     environment:
       KEYCLOAK_HOST: "traefik/auth"
       KEYCLOAK_REALM: "biletado"
