@@ -20,7 +20,7 @@ services:
       DB_VENDOR: postgres
       DB_ADDR: postgres
       DB_DATABASE: keycloak
-      DB_USER: postgres
+      DB_USER: ${POSTGRES_USER}
       DB_PASSWORD: ${POSTGRES_PASSWORD}
       KEYCLOAK_USER: ${KEYCLOAK_USER}
       KEYCLOAK_PASSWORD: ${KEYCLOAK_PASSWORD}
