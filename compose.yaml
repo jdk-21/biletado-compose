@@ -45,7 +45,7 @@ services:
     container_name: biletado-backend
     image: ${BACKEND_IMAGE_REPOSITORY}:${BACKEND_IMAGE_VERSION}
     environment:
-      KEYCLOAK_HOST: "traefik/auth"
+      KEYCLOAK_HOST: "traefik"
       KEYCLOAK_REALM: "biletado"
     expose:
       - "9000"
