@@ -47,6 +47,11 @@ services:
       KEYCLOAK_HOST: "traefik"
       KEYCLOAK_REALM: "biletado"
       JAEGER_TRACECONTEXTHEADERNAME: ${JAEGER_TRACECONTEXTHEADERNAME}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DBNAME: "assets"
+      POSTGRES_HOST: "postgres"
+      POSTGRES_PORT: "5432"
     expose:
       - "9000"
     restart: unless-stopped
