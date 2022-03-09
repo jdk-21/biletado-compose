@@ -1,0 +1,3 @@
+CREATE DATABASE assets;
+\c assets;
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
