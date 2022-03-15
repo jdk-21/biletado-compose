@@ -77,7 +77,6 @@ services:
     image: jaegertracing/all-in-one:${JAEGER_IMAGE_VERSION}
     environment:
       QUERY_BASE_PATH: "/jaeger"
-      TRAEFIK_TRACING_JAEGER_TRACECONTEXTHEADERNAME: ${JAEGER_TRACECONTEXTHEADERNAME}
     expose:
       - "5778"
       - "6831/udp"
