@@ -3,7 +3,6 @@ version: '3.9'
 services:
   postgres:
     image: postgres:${POSTGRES_IMAGE_VERSION}
-    container_name: biletado-postgres
     restart: unless-stopped
     environment:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
@@ -15,7 +14,6 @@ services:
   keycloak:
     depends_on:
       - postgres
-    container_name: biletado-keycloak
     environment:
       DB_VENDOR: postgres
       DB_ADDR: postgres
@@ -33,7 +31,6 @@ services:
       - ./keycloak/realm-export.json:/tmp/realm-export.json:Z
 
   frontend:
-    container_name: biletado-frontend
     image: ${FRONTEND_IMAGE_REPOSITORY}:${FRONTEND_IMAGE_VERSION}
     expose:
       - "80"
@@ -42,7 +39,6 @@ services:
       - ./frontend/config.json:/usr/share/nginx/html/assets/config.json:Z
 
   backend:
-    container_name: biletado-backend
     image: ${BACKEND_IMAGE_REPOSITORY}:${BACKEND_IMAGE_VERSION}
     environment:
       KEYCLOAK_HOST: "traefik"
@@ -57,7 +53,6 @@ services:
       - frontend
       - backend
       - jaeger
-    container_name: biletado-traefik
     image: traefik:${TRAEFIK_IMAGE_VERSION}
     ports:
       - "8080:8080"
@@ -67,7 +62,6 @@ services:
       - ./traefik/traefik.yaml:/etc/traefik/traefik.yaml:Z
       - ./traefik/traefik.conf.d/:/etc/traefik/traefik.conf.d/:Z
   jaeger:
-    container_name: biletado-jaeger
     image: jaegertracing/all-in-one:${JAEGER_IMAGE_VERSION}
     environment:
       QUERY_BASE_PATH: "/jaeger"
