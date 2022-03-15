@@ -32,3 +32,4 @@ http:
       loadBalancer:
         servers:
           - url: http://backend:9000
+          #- url: http://host.docker.internal:9000

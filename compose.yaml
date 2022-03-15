@@ -8,6 +8,9 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     expose:
       - "5432"
+    #ports:
+      # necessary for local backend development
+      #- "5432:5432"
     volumes:
       - ./postgres/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d:Z
 
@@ -62,6 +65,9 @@ services:
     volumes:
       - ./traefik/traefik.yaml:/etc/traefik/traefik.yaml:Z
       - ./traefik/traefik.conf.d/:/etc/traefik/traefik.conf.d/:Z
+    #extra_hosts:
+    # necessary on linux to access local backends through traefik via e.g. `url: http://host.docker.internal:9000/`
+    # - host.docker.internal:host-gateway
   jaeger:
     image: jaegertracing/all-in-one:${JAEGER_IMAGE_VERSION}
     environment:
