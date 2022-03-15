@@ -43,6 +43,7 @@ services:
     environment:
       KEYCLOAK_HOST: "traefik"
       KEYCLOAK_REALM: "biletado"
+      JAEGER_TRACECONTEXTHEADERNAME: ${JAEGER_TRACECONTEXTHEADERNAME}
     expose:
       - "9000"
     restart: unless-stopped
@@ -65,6 +66,7 @@ services:
     image: jaegertracing/all-in-one:${JAEGER_IMAGE_VERSION}
     environment:
       QUERY_BASE_PATH: "/jaeger"
+      TRAEFIK_TRACING_JAEGER_TRACECONTEXTHEADERNAME: ${JAEGER_TRACECONTEXTHEADERNAME}
     expose:
       - "5778"
       - "6831/udp"
