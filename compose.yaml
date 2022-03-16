@@ -134,13 +134,13 @@ services:
     depends_on:
       - postgres
 
-  swagger-ui:
+  apidocs:
     restart: unless-stopped
-    image: swaggerapi/swagger-ui
+    image: registry.gitlab.com/biletado/apidocs:${APIDOCS_IMAGE_VERSION}
     expose:
       - "8080"
     environment:
-      CONFIG_URL: ./swagger-config.json
-      BASE_URL: /swagger-ui
+      BASE_URL: /apidocs
     volumes:
-      - ./swagger-ui/swagger-config.json:/usr/share/nginx/html/swagger-config.json:Z
+      - ./apidocs/tmp/servers.yaml:/tmp/servers.yaml:Z
+      - ./apidocs/docker-entrypoint.d/40-merge-servers.sh:/docker-entrypoint.d/40-merge-servers.sh:Z

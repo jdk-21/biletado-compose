@@ -1,0 +1,3 @@
+servers:
+  - url: /api
+    description: default biletado assets api
