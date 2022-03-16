@@ -1,5 +1,5 @@
 {
-  "apiUrl": "/api",
+  "apiUrl": "/api/jwt",
   "keycloak": {
     "url": "http://localhost/auth",
     "realm": "biletado",
