@@ -3,7 +3,6 @@ version: '3.9'
 services:
   postgres:
     image: postgres:${POSTGRES_IMAGE_VERSION}
-    restart: unless-stopped
     environment:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     expose:
@@ -29,7 +28,6 @@ services:
     image: jboss/keycloak:${KEYCLOAK_IMAGE_VERSION}
     expose:
       - "8080"
-    restart: unless-stopped
     volumes:
       - ./keycloak/realm-export.json:/tmp/realm-export.json:Z
 
@@ -37,7 +35,6 @@ services:
     image: ${FRONTEND_IMAGE_REPOSITORY}:${FRONTEND_IMAGE_VERSION}
     expose:
       - "80"
-    restart: unless-stopped
     volumes:
       - ./frontend/config.json:/usr/share/nginx/html/assets/config.json:Z
 
@@ -49,7 +46,6 @@ services:
       JAEGER_TRACECONTEXTHEADERNAME: ${JAEGER_TRACECONTEXTHEADERNAME}
     expose:
       - "9000"
-    restart: unless-stopped
 
   backend-assets:
     image: ${BACKEND_IMAGE_REPOSITORY}:${BACKEND_IMAGE_VERSION}
@@ -64,7 +60,6 @@ services:
       POSTGRES_ASSETS_PORT: "5432"
     expose:
       - "9000"
-    restart: unless-stopped
 
   backend-reservations:
     image: ${BACKEND_IMAGE_REPOSITORY}:${BACKEND_IMAGE_VERSION}
@@ -79,7 +74,6 @@ services:
       POSTGRES_RESERVATIONS_PORT: "5432"
     expose:
       - "9000"
-    restart: unless-stopped
 
   traefik:
     depends_on:
@@ -91,7 +85,6 @@ services:
     ports:
       - "8080:8080"
       - "80:80"
-    restart: unless-stopped
     volumes:
       - ./traefik/traefik.yaml:/etc/traefik/traefik.yaml:Z
       - ./traefik/traefik.conf.d/:/etc/traefik/traefik.conf.d/:Z
@@ -108,7 +101,6 @@ services:
       - "16686"
 
   pgadmin4:
-    restart: unless-stopped
     image: dpage/pgadmin4
     ports:
       - "5433:80"
@@ -135,7 +127,6 @@ services:
       - postgres
 
   apidocs:
-    restart: unless-stopped
     image: registry.gitlab.com/biletado/apidocs:${APIDOCS_IMAGE_VERSION}
     expose:
       - "8080"
