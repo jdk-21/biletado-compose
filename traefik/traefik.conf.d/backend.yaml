@@ -19,6 +19,7 @@ http:
           - GET
           - OPTIONS
           - PUT
+          - DELETE
         accessControlAllowCredentials: true
         accessControlAllowOriginList:
           - http://localhost
