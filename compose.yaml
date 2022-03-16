@@ -49,6 +49,8 @@ services:
 
   backend-assets:
     image: ${BACKEND_IMAGE_REPOSITORY}:${BACKEND_IMAGE_VERSION}
+    depends_on:
+      - postgres
     environment:
       KEYCLOAK_HOST: "traefik"
       KEYCLOAK_REALM: "biletado"
@@ -63,6 +65,8 @@ services:
 
   backend-reservations:
     image: ${BACKEND_IMAGE_REPOSITORY}:${BACKEND_IMAGE_VERSION}
+    depends_on:
+      - postgres
     environment:
       KEYCLOAK_HOST: "traefik"
       KEYCLOAK_REALM: "biletado"
