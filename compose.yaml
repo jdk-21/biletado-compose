@@ -108,3 +108,14 @@ services:
       "
     depends_on:
       - postgres
+
+  swagger-ui:
+    restart: unless-stopped
+    image: swaggerapi/swagger-ui
+    expose:
+      - "8080"
+    environment:
+      CONFIG_URL: ./swagger-config.json
+      BASE_URL: /swagger-ui
+    volumes:
+      - ./swagger-ui/swagger-config.json:/usr/share/nginx/html/swagger-config.json:Z

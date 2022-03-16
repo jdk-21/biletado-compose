@@ -9,6 +9,7 @@
     "traefik": "//localhost:8080/",
     "keycloak": "/auth",
     "jaeger-ui": "/jaeger/search?service=traefik",
-    "pgadmin4": "//localhost:5433/"
+    "pgadmin4": "//localhost:5433/",
+    "swagger-ui": "/swagger-ui/"
   }
 }

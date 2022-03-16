@@ -1,0 +1,12 @@
+http:
+  routers:
+    swagger-ui:
+      entryPoints:
+        - web
+      rule: PathPrefix(`/swagger-ui`)
+      service: swagger-ui
+  services:
+    swagger-ui:
+      loadBalancer:
+        servers:
+          - url: http://swagger-ui:8080
