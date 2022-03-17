@@ -133,5 +133,5 @@ services:
     environment:
       BASE_URL: /apidocs
     volumes:
-      - ./apidocs/tmp/servers.yaml:/tmp/servers.yaml:Z
+      - ./apidocs/servers.yaml:/tmp/servers.yaml:Z
       - ./apidocs/docker-entrypoint.d/40-merge-servers.sh:/docker-entrypoint.d/40-merge-servers.sh:Z
