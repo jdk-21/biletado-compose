@@ -142,6 +142,7 @@ services:
       - "8080"
     environment:
       BASE_URL: /apidocs
+      OAUTH_CLIENT_ID: angular
     volumes:
       - ./apidocs/global-config.yaml:/tmp/global-config.yaml:Z
       - ./apidocs/docker-entrypoint.d/40-merge-global-config.sh:/docker-entrypoint.d/40-merge-global-config.sh:Z

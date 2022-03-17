@@ -9,3 +9,12 @@ paths: {}
 servers:
   - url: /api
     description: default biletado assets api
+components:
+  securitySchemes:
+    biletado:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: http://localhost/auth/realms/biletado/protocol/openid-connect/auth
+          tokenUrl: http://localhost/auth/realms/biletado/protocol/openid-connect/token
+          scopes: {}
