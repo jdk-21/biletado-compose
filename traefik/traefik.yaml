@@ -17,4 +17,5 @@ tracing:
   jaeger:
     samplingServerURL: http://jaeger:5778/sampling
     localAgentHostPort: jaeger:6831
-    traceContextHeaderName: biletado-trace-id
+    # is this https://github.com/traefik/traefik/issues/7855 ?
+    #traceContextHeaderName: biletado-trace-id
