@@ -39,7 +39,7 @@ services:
       - ./frontend/config.json:/usr/share/nginx/html/assets/config.json:Z
 
   backend:
-    image: ${BACKEND_IMAGE_REPOSITORY}:${BACKEND_IMAGE_VERSION}
+    image: ${BACKEND_JWT_IMAGE_REPOSITORY}:${BACKEND_JWT_IMAGE_VERSION}
     environment:
       KEYCLOAK_HOST: "traefik"
       KEYCLOAK_REALM: "biletado"
@@ -48,7 +48,7 @@ services:
       - "9000"
 
   backend-assets:
-    image: ${BACKEND_IMAGE_REPOSITORY}:${BACKEND_IMAGE_VERSION}
+    image: ${BACKEND_ASSETS_IMAGE_REPOSITORY}:${BACKEND_ASSETS_IMAGE_VERSION}
     depends_on:
       - postgres
     environment:
@@ -64,7 +64,7 @@ services:
       - "9000"
 
   backend-reservations:
-    image: ${BACKEND_IMAGE_REPOSITORY}:${BACKEND_IMAGE_VERSION}
+    image: ${BACKEND_RESERVATIONS_IMAGE_REPOSITORY}:${BACKEND_RESERVATIONS_IMAGE_VERSION}
     depends_on:
       - postgres
     environment:
