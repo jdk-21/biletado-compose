@@ -1,3 +1,11 @@
+openapi: "3.0.0"
+info:
+  title: ""
+  version: ""
+paths: {}
+
+# the part above is only to meet minimal requirements for a valid openapi-definition
+
 servers:
   - url: /api
     description: default biletado assets api
