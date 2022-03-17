@@ -3,6 +3,7 @@ version: '3.9'
 services:
   postgres:
     image: postgres:${POSTGRES_IMAGE_VERSION}
+    restart: unless-stopped
     environment:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     expose:
@@ -28,6 +29,7 @@ services:
     image: jboss/keycloak:${KEYCLOAK_IMAGE_VERSION}
     expose:
       - "8080"
+    restart: unless-stopped
     volumes:
       - ./keycloak/realm-export.json:/tmp/realm-export.json:Z
 
@@ -35,6 +37,7 @@ services:
     image: ${FRONTEND_IMAGE_REPOSITORY}:${FRONTEND_IMAGE_VERSION}
     expose:
       - "80"
+    restart: unless-stopped
     volumes:
       - ./frontend/config.json:/usr/share/nginx/html/assets/config.json:Z
 
@@ -46,6 +49,7 @@ services:
       JAEGER_TRACECONTEXTHEADERNAME: ${JAEGER_TRACECONTEXTHEADERNAME}
     expose:
       - "9000"
+    restart: unless-stopped
 
   backend-assets:
     image: ${BACKEND_ASSETS_IMAGE_REPOSITORY}:${BACKEND_ASSETS_IMAGE_VERSION}
@@ -62,6 +66,7 @@ services:
       POSTGRES_ASSETS_PORT: "5432"
     expose:
       - "9000"
+    restart: unless-stopped
 
   backend-reservations:
     image: ${BACKEND_RESERVATIONS_IMAGE_REPOSITORY}:${BACKEND_RESERVATIONS_IMAGE_VERSION}
@@ -78,18 +83,20 @@ services:
       POSTGRES_RESERVATIONS_PORT: "5432"
     expose:
       - "9000"
+    restart: unless-stopped
 
   traefik:
     image: traefik:${TRAEFIK_IMAGE_VERSION}
     ports:
       - "8080:8080"
       - "80:80"
+    restart: unless-stopped
     volumes:
       - ./traefik/traefik.yaml:/etc/traefik/traefik.yaml:Z
       - ./traefik/traefik.conf.d/:/etc/traefik/traefik.conf.d/:Z
-    #extra_hosts:
+    extra_hosts:
     # necessary on linux to access local backends through traefik via e.g. `url: http://host.docker.internal:9000/`
-    # - host.docker.internal:host-gateway
+     - host.docker.internal:host-gateway
 
   jaeger:
     image: jaegertracing/all-in-one:${JAEGER_IMAGE_VERSION}
@@ -99,8 +106,10 @@ services:
       - "5778"
       - "6831/udp"
       - "16686"
+    restart: unless-stopped
 
   pgadmin4:
+    restart: unless-stopped
     image: dpage/pgadmin4
     ports:
       - "5433:80"
@@ -127,6 +136,7 @@ services:
       - postgres
 
   apidocs:
+    restart: unless-stopped
     image: registry.gitlab.com/biletado/apidocs:${APIDOCS_IMAGE_VERSION}
     expose:
       - "8080"
