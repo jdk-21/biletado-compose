@@ -9,4 +9,4 @@ http:
     apidocs:
       loadBalancer:
         servers:
-          - url: http://apidocs:8080
+          - url: http://backend:3000
