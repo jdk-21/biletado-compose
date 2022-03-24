@@ -45,6 +45,12 @@ services:
     image: ${BACKEND_IMAGE_REPOSITORY}:${BACKEND_IMAGE_VERSION}
     depends_on:
       - postgres
+    environment:
+      POSTGRES_ASSETS_USER: ${POSTGRES_USER}
+      POSTGRES_ASSETS_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_ASSETS_DBNAME: "assets"
+      POSTGRES_ASSETS_HOST: "postgres"
+      POSTGRES_ASSETS_PORT: "5432"
     expose: 
       - "3000"
     restart: on-failure
@@ -96,7 +102,7 @@ services:
   traefik:
     image: traefik:${TRAEFIK_IMAGE_VERSION}
     ports:
-      - "8081:8080"
+      - "8080:8080"
       - "80:80"
     restart: unless-stopped
     volumes:
