@@ -46,6 +46,8 @@ services:
     depends_on:
       - postgres
     environment:
+      KEYCLOAK_HOST: "traefik"
+      KEYCLOAK_REALM: "biletado"
       POSTGRES_ASSETS_USER: ${POSTGRES_USER}
       POSTGRES_ASSETS_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_ASSETS_DBNAME: "assets"
