@@ -53,6 +53,8 @@ services:
       POSTGRES_ASSETS_DBNAME: "assets"
       POSTGRES_ASSETS_HOST: "postgres"
       POSTGRES_ASSETS_PORT: "5432"
+      # optional: Uber-Trace-Id is default
+      JAEGER_TRACECONTEXTHEADERNAME: ${JAEGER_TRACECONTEXTHEADERNAME}
       # optional: uses traefik/api/reservations as standard
       RESERVATIONS_ENDPOINT: "traefik/api/reservations"
       # optional:
@@ -92,7 +94,7 @@ services:
   traefik:
     image: traefik:${TRAEFIK_IMAGE_VERSION}
     ports:
-      - "8081:8080"
+      - "8080:8080"
       - "80:80"
     restart: unless-stopped
     volumes:
