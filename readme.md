@@ -1,4 +1,4 @@
-# Documatation of Biletado Compose
+# Documentation of Biletado Compose
 
 ### Link to Backend:
 https://github.com/jdk-21/biletado-backend
